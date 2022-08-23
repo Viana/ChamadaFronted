@@ -1,4 +1,8 @@
-.App{
+.container{
+  min-height: 70vh;
+}
+
+/* .App{
   width: 100%;
   margin: 16em auto;
   background-color: #394049;
@@ -59,4 +63,4 @@ input[type="submit"]{
   padding: 2em;
   cursor: pointer;
  
-}
+} */

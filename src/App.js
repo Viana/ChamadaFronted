@@ -1,10 +1,15 @@
 import swal from 'sweetalert2';
 import './App.css';
 import { useState, useEffect } from 'react'
-import { Bstrash, BsBookmarkcheck, BsBookmarkcheckFill } from 'react-icons/bs'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import axios from 'axios'
 import { format } from 'date-fns';
 import { confirm } from 'react-confirm-box'
+import Home from './pages/Home/Home';
+import Login from './pages/Auth/Login';
+import Register from './pages/Auth/Register';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 
 
@@ -40,28 +45,19 @@ function App() {
 
   return (
     <div className="App">
-      <div className="chamada-header">
-        <h1>Reunião dos Obreiros</h1>
-      </div>
-      <div className="form-chamada">
-        <h2>Chamada</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-control">
-            <input
-              type="number"
-              onKeyPress={e => { if (!/[0-9]/.test(e.key)) e.preventDefault() }}
-              name="cracha"
-              placeholder="Numero da chamada"
-              onChange={(e) => setCracha(e.target.value)}
-              value={cracha}
-              required
-            />
-          </div>
-          <input type="submit" value="Enviar" />
-        </form>
-      </div>
+      <BrowserRouter>
+        <Navbar />
+        <div className="container">
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+          </Routes>
+        </div>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }
-
 export default App;
+
