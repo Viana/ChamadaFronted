@@ -6,41 +6,22 @@ import axios from 'axios'
 import { format } from 'date-fns';
 import { confirm } from 'react-confirm-box'
 import Home from './pages/Home/Home';
+import Chamada from './pages/Chamada/Chamada';
+import Justificativa from './pages/Justificativa/Justificativa';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import { useAuth } from './hooks/useAuth';
+import EditProfile from './pages/EditProfile/EditProfile';
 
-
-
-// import {confirm} from 'react-confirm'
-const API = 'http://localhost:3001';
 
 function App() {
 
-  const [cracha, setCracha] = useState("");
-  var today = format(new Date(), 'dd/MM/yyyy');
+  const { auth, loading } = useAuth()
 
-  const handleSubmit = async (e) => {
-    let flag = false;
-    e.preventDefault()
-
-    try {
-      let nomeObr;
-      await axios.get(API + `/obreiros/cracha/${cracha}`)
-        .then(re => {
-
-          re.data.map((r) => {
-            console.log(r.nome)
-          })
-        })
-
-    } catch (error) {
-      console.log(error.response.data.Msg)
-    }
-
-    setCracha("");
-
+  if (loading) {
+    return <p>Carregando...</p>
   }
 
   return (
@@ -49,9 +30,12 @@ function App() {
         <Navbar />
         <div className="container">
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
+            <Route path='/' element={auth ? <Home /> : <Navigate to="/login" />} />
+            <Route path='/profile' element={auth ? <EditProfile /> : <Navigate to="/login" />} />
+            <Route path='/login' element={!auth ? <Login /> : <Navigate to="/" />} />
+            <Route path='/register' element={!auth ? <Register /> : <Navigate to="/register" />} />
+            <Route path='/chamada' element={auth ? <Chamada /> : <Navigate to="/login" />} />
+            <Route path='/justificativa' element={auth ? <Justificativa /> : <Navigate to="/login" />} />
           </Routes>
         </div>
         <Footer />

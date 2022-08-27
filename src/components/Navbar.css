@@ -1,45 +1,29 @@
-#nav{
+#nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: black;
     border-bottom: 1px solid #363636;
     padding: 0.1em 1em;
+    font-size: 1.5em;
 }
 
-#search-form{
-    position: relative;
-    width: 20%;
-}
 
-#search-form svg{
-    position: absolute;
-    top: 10px;
-    left: 9px;
-}
-
-#search-form input{
-    padding-left: 2.5em;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    margin: 0;
-
-}
-
-#nav-links{
+#nav-links {
     display: flex;
-    align-items:center;
+    align-items: center;
+    color: blanchedalmond;
 }
 
-#nav-links li{
+#nav-links li {
     margin-right: 1em;
 }
 
-#nav-links span{
+#nav-links span {
     cursor: pointer;
+    /* font-size: 1.7em; */
 }
 
-#nav-links svg{
-    font-size: 1.5em;
+#nav-links svg {
+    font-size: 1.7em;
 }
