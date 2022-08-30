@@ -43,8 +43,6 @@ const EditProfile = () => {
 
         formData.append("user", userFormData)
 
-        console.log('******* '+JSON.stringify( userFormData))
-
         await dispatch(updateProfile(userData))
 
         setTimeout(() => {
@@ -62,7 +60,6 @@ const EditProfile = () => {
         dispatch(profile())
     }, [dispatch])
 
-    console.log(user)
     useEffect(() => {
         if (user) {
             setNome(user.nome)
